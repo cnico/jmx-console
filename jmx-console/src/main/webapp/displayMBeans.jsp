@@ -53,6 +53,7 @@
 
 <table width='100%' cellspacing="0" cellpadding="0" border="0">
     <tr>
+    <td><button onClick="javascript:window.top.location='HtmlAdaptor?action=displayMBeans'">No Frames</button></td>
         <td height="105" align="center"><h1>JMX Agent View</h1>
 
             <h3><%= hostInfo%> - <%= serverName %>

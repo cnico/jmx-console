@@ -9,9 +9,9 @@
 
 <body leftmargin="10" rightmargin="10" topmargin="10">
 
-<table width="226" cellspacing="0" cellpadding="0" border="0">
+<table width="226" cellspacing="0" cellpadding="20" border="0">
     <tr>
-        <td align="center" width="226" height="105"><img src="images/wildfly_logo.gif" border="0" alt="JBoss"/></td>
+        <td align="center" width="226"><img src="images/logo.png" border="0" alt="JBoss"/></td>
     </tr>
 </table>
 

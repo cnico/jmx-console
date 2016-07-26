@@ -75,19 +75,24 @@ public class Server {
             Set objectNames = server.queryNames(filterName, null);
             Iterator objectNamesIter = objectNames.iterator();
             while (objectNamesIter.hasNext()) {
-                ObjectName name = (ObjectName) objectNamesIter.next();
-                if (omittedDomains.contains(name.getDomain())) {
-                    continue;
+                try {
+                    ObjectName name = (ObjectName) objectNamesIter.next();
+                    if (omittedDomains.contains(name.getDomain())) {
+                        continue;
+                    }
+                    
+                    MBeanInfo info = server.getMBeanInfo(name);
+                    String domainName = name.getDomain();
+                    MBeanData mbeanData = new MBeanData(name, info);
+                    DomainData data = (DomainData) domainData.get(domainName);
+                    if (data == null) {
+                        data = new DomainData(domainName);
+                        domainData.put(domainName, data);
+                    }
+                    data.addData(mbeanData);
+                } catch (Exception e) {
+                    log.trace("getDomainData error: " + e);
                 }
-                MBeanInfo info = server.getMBeanInfo(name);
-                String domainName = name.getDomain();
-                MBeanData mbeanData = new MBeanData(name, info);
-                DomainData data = (DomainData) domainData.get(domainName);
-                if (data == null) {
-                    data = new DomainData(domainName);
-                    domainData.put(domainName, data);
-                }
-                data.addData(mbeanData);
             }
         }
         Iterator domainDataIter = domainData.values().iterator();
