@@ -11,7 +11,7 @@
 
 <table width="226" cellspacing="0" cellpadding="20" border="0">
     <tr>
-        <td align="center" width="226"><img src="images/logo.png" border="0" alt="JBoss"/></td>
+        <td align="center" width="226"><img src="images/logo.png" border="0" width="100%" alt="JBoss"/></td>
     </tr>
 </table>
 
