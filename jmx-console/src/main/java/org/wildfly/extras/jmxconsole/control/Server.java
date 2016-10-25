@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeMap;
+
 import javax.management.Attribute;
 import javax.management.AttributeList;
 import javax.management.JMException;
@@ -41,8 +42,7 @@ import javax.management.MBeanParameterInfo;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import javax.management.ReflectionException;
-import org.jboss.util.Classes;
-import org.jboss.util.propertyeditor.PropertyEditors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.wildfly.extras.jmxconsole.model.DomainData;
@@ -172,17 +172,18 @@ public class Server {
             String attrType = attrInfo.getType();
             Attribute attr = null;
             try {
-                Object realValue = PropertyEditors.convertValue(value, attrType);
+                Object realValue = Classes.convertValue(value, attrType);
+                log.trace("attribute " + attrName + ", attrType " + attrType + ", value " + value + ", converted value " + realValue);
                 attr = new Attribute(attrName, realValue);
             } catch (ClassNotFoundException e) {
                 String s = (attr != null) ? attr.getName() : attrType;
                 log.trace("Failed to load class for attribute: " + s, e);
                 throw new ReflectionException(e, "Failed to load class for attribute: " + s);
-            } catch (IntrospectionException e) {
+            }/* catch (IntrospectionException e) {
                 log.trace(
                         "Skipped setting attribute: " + attrName + ", cannot find PropertyEditor for type: " + attrType);
                 continue;
-            }
+            }*/
 
             server.setAttribute(objName, attr);
             newAttributes.add(attr);
@@ -211,19 +212,19 @@ public class Server {
         for (int p = 0; p < typedArgs.length; p++) {
             String arg = args[p];
             try {
-                Object argValue = PropertyEditors.convertValue(arg, argTypes[p]);
+                Object argValue = Classes.convertValue(arg, argTypes[p]);
                 typedArgs[p] = argValue;
             } catch (ClassNotFoundException e) {
                 log.trace("Failed to load class for arg" + p, e);
                 throw new ReflectionException(e, "Failed to load class for arg" + p);
-            } catch (java.beans.IntrospectionException e) {
+            }/* catch (java.beans.IntrospectionException e) {
                 // If the type is not java.lang.Object throw an exception
                 if (argTypes[p].equals("java.lang.Object") == false) throw new javax.management.IntrospectionException(
                         "Failed to find PropertyEditor for type: " + argTypes[p]);
                 // Just use the String arg
                 typedArgs[p] = arg;
                 continue;
-            }
+            }*/
         }
         Object opReturn = server.invoke(objName, opName, typedArgs, argTypes);
         return new OpResultInfo(opName, argTypes, args, opReturn);

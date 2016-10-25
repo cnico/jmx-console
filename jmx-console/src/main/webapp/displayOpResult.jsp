@@ -1,9 +1,7 @@
 <?xml version="1.0"?>
 <%@page contentType="text/html"
-        import="java.beans.PropertyEditor,
-                java.io.IOException,
-                java.net.InetAddress,
-                org.jboss.util.propertyeditor.PropertyEditors"
+        import="java.io.IOException,
+                java.net.InetAddress"
         %>
 <%
     String hostname = "";
@@ -71,14 +69,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         out.println("Operation completed successfully without a return value!");
     } else {
         String opResultString = null;
-
-        PropertyEditor propertyEditor = PropertyEditors.findEditor(opResultInfo.result.getClass());
-        if (propertyEditor != null) {
-            propertyEditor.setValue(opResultInfo.result);
-            opResultString = propertyEditor.getAsText();
-        } else {
-            opResultString = opResultInfo.result.toString();
-        }
+		opResultString = opResultInfo.result.toString();
 
         boolean hasPreTag = opResultString.startsWith("<pre>");
         if (hasPreTag == false) out.println("<pre>");

@@ -215,6 +215,7 @@ public class HtmlAdaptorServlet extends HttpServlet {
         }
 
         try {
+            log.trace("modified attributes: " + attributes);
             AttributeList newAttributes = setAttributes(name, attributes);
             MBeanData data = getMBeanData(name);
             request.setAttribute("mbeanData", data);
