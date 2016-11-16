@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+    <description>The standard web descriptor for the html adaptor</description>
+
+    <servlet>
+        <servlet-name>HtmlAdaptor</servlet-name>
+        <servlet-class>org.wildfly.extras.jmxconsole.html.HtmlAdaptorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DisplayMBeans</servlet-name>
+        <jsp-file>/displayMBeans.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>InspectMBean</servlet-name>
+        <jsp-file>/inspectMBean.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>DisplayOpResult</servlet-name>
+        <jsp-file>/displayOpResult.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HtmlAdaptor</servlet-name>
+        <url-pattern>/HtmlAdaptor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayMBeans</servlet-name>
+        <url-pattern>/DisplayMBeans</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InspectMBean</servlet-name>
+        <url-pattern>/InspectMBean</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayOpResult</servlet-name>
+        <url-pattern>/DisplayOpResult</url-pattern>
+    </servlet-mapping>
+
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>ApplicationRealm</realm-name>
+    </login-config>
+
+    <security-role>
+        <role-name>jmx-console</role-name>
+    </security-role>
+
+</web-app>
