@@ -1,3 +1,6 @@
 *.class
 target/
 *.iml
+/jmx-console/.project
+/jmx-console/.classpath
+/jmx-console/.settings

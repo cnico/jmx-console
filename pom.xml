@@ -6,88 +6,21 @@
     <version>1.0.0-SNAPSHOT</version>
     <name>WildFly JMX Console :: Parent</name>
     <packaging>pom</packaging>
-    <properties>
-		<jboss.version>7.0.0.GA</jboss.version>
-		<jboss.spec.version>1.0.3.Final-redhat-2</jboss.spec.version>
-    </properties>
     <modules>
         <module>jmx-console</module>
     </modules>
     <dependencyManagement>
         <dependencies>
- 			<dependency>
-				<groupId>org.jboss.bom</groupId>
-				<artifactId>eap-runtime-artifacts</artifactId>
-				<version>${jboss.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.bom</groupId>
-				<artifactId>jboss-eap-javaee7</artifactId>
-				<version>${jboss.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.bom</groupId>
-				<artifactId>jboss-eap-javaee7-with-tools</artifactId>
-				<version>${jboss.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.spec</groupId>
-				<artifactId>jboss-javaee-7.0</artifactId>
-				<version>${jboss.spec.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.spec</groupId>
-				<artifactId>jboss-javaee-web-7.0</artifactId>
-				<version>${jboss.spec.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>1.7.2</version>
             </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.10</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.resteasy</groupId>
-                <artifactId>resteasy-client</artifactId>
-                <version>3.0.8.Final</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpclient</artifactId>
-                <version>4.3.5</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpcore</artifactId>
-                <version>4.3.2</version>
+			<dependency>
+                <groupId>dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>1.6.1</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <repositories>
-        <repository>
-            <id>internal</id>
-            <url>https://xvubuilds.mpicorp.ca/archiva/repository/internal/</url>
-            <name>internal</name>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 </project>
